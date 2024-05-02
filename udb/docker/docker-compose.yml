@@ -1,0 +1,56 @@
+version: '3.7'
+name: 'udb'
+
+services:
+  c1-udb1:
+    image: couchbase
+    networks:
+      - cluster_1
+    ports:
+      - "8001-8004:8091-8094"
+      - "11200-11201:11210-11211"
+    volumes:
+      - c1-udb1_data:/opt/couchbase/var
+
+  c1-udb2:
+    image: couchbase
+    networks:
+      - cluster_1
+    ports:
+      - "8011-8014:8091-8094"
+      - "11210-11211:11210-11211"
+    volumes:
+      - c1-udb2_data:/opt/couchbase/var
+
+  c2-udb1:
+    image: couchbase
+    networks:
+      - cluster_2
+    ports:
+      - "8101-8104:8091-8094"
+      - "11220-11221:11210-11211"
+    volumes:
+      - c2-udb1_data:/opt/couchbase/var
+
+  c2-udb2:
+    image: couchbase
+    networks:
+      - cluster_2
+    ports:
+      - "8111-8114:8091-8094"
+      - "11230-11231:11210-11211"
+    volumes:
+      - c2-udb2_data:/opt/couchbase/var
+
+networks:
+  cluster_1:
+    driver: bridge
+  cluster_2:
+    driver: bridge
+
+volumes:
+  c1-udb1_data:
+  c1-udb2_data:
+  c2-udb1_data:
+  c2-udb2_data:
+
