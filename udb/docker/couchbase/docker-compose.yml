@@ -8,7 +8,7 @@ services:
     image: udb-couchbase-cluster:latest
     pull_policy: never
     env_file:
-      - docker.env
+      - cb.env
     environment:
       - CLUSTER_NAME=cl1-udb
       - CLUSTER_NODES=cl1-udb2.socialnetwork,cl1-udb3.socialnetwork
@@ -25,13 +25,13 @@ services:
       - "8001-8006:8091-8096"
       - "11200-11201:11210-11211"
     entrypoint: [ "" ]
-    command: sh -c "/opt/couchbase/init/init-cbserver.sh"
+    command: sh -c "/opt/couchbase/init/cb-orchestrator.sh"
 
   cl2-udb1:
     image: udb-couchbase-cluster:latest
     pull_policy: never
     env_file:
-      - docker.env
+      - cb.env
     environment:
       - CLUSTER_NAME=cl2-udb
       - CLUSTER_NODES=cl2-udb2.socialnetwork,cl2-udb3.socialnetwork
@@ -48,7 +48,7 @@ services:
       - "8101-8106:8091-8096"
       - "11300-11301:11210-11211"
     entrypoint: [ "" ]
-    command: sh -c "/opt/couchbase/init/init-cbserver.sh"
+    command: sh -c "/opt/couchbase/init/cb-orchestrator.sh"
 
   cl1-udb2:
     image: couchbase:latest
