@@ -6,17 +6,18 @@ services:
       context: ../
       dockerfile: docker/be/Dockerfile
     hostname: udb.socialnetwork
-    container_name: udb
+    container_name: be-api
     depends_on:
       - cl1-udb1
     ports:
+      - 5005:5005
       - 8080:8080
     expose:
       - 8080
     networks:
       - internal
     entrypoint: ["wait-for.sh", "/var/lib/appdata/init_done", "--"]
-    command: ["java", "-jar", "target/udb.jar"]
+    command: ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "target/udb.jar"]
     volumes:
       - appdata-volume:/var/lib/appdata
 

@@ -35,6 +35,25 @@ create_bucket() {
     --enable-flush 1
 }
 
+# https://docs.couchbase.com/server/current/manage/manage-scopes-and-collections/manage-scopes-and-collections.html
+create_scope() {
+    /opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+    --username "$ADMINISTRATOR_USERNAME" \
+    --password "$ADMINISTRATOR_PASSWORD" \
+    --bucket "$BUCKET_NAME" \
+    --create-scope "$SCOPE_NAME"
+}
+
+# https://docs.couchbase.com/server/current/manage/manage-scopes-and-collections/manage-scopes-and-collections.html
+create_collection() {
+    /opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+    --username "$ADMINISTRATOR_USERNAME" \
+    --password "$ADMINISTRATOR_PASSWORD" \
+    --bucket "$BUCKET_NAME" \
+    --create-collection "$SCOPE_NAME"."$COLLECTION_NAME" \
+    --max-ttl 0
+}
+
 # https://docs.couchbase.com/server/current/cli/cbcli/couchbase-cli-server-add.html
 add_nodes() {
     /opt/couchbase/bin/couchbase-cli server-add -c localhost \
@@ -85,6 +104,10 @@ orchestrate() {
         initialize_cluster
         sleep 2s
         create_bucket
+        sleep 2s
+        create_scope
+        sleep 2s
+        create_collection
         sleep 2s
 
         if [ -n "$CLUSTER_NODES" ]; then
