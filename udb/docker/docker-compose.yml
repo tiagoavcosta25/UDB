@@ -1,56 +1,108 @@
-version: '3.7'
 name: 'udb'
 
 services:
-  c1-udb1:
-    image: couchbase
+  cl1-udb1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: udb-couchbase-cluster:latest
+    pull_policy: never
+    env_file:
+      - docker.env
+    environment:
+      - CLUSTER_NAME=cl1-udb
+      - CLUSTER_NODES=cl1-udb2.socialnetwork,cl1-udb3.socialnetwork
+      - XDCR_CLUSTER=cl2-udb
+    hostname: cl1-udb1.socialnetwork
+    container_name: cl1-udb1
+    working_dir: /opt/couchbase
+    stdin_open: true
+    tty: true
     networks:
-      - cluster_1
+      - internal
     ports:
-      - "8001-8004:8091-8094"
+      - "8001-8006:8091-8096"
       - "11200-11201:11210-11211"
-    volumes:
-      - c1-udb1_data:/opt/couchbase/var
+    entrypoint: [ "" ]
+    command: sh -c "/opt/couchbase/init/init-cbserver.sh"
 
-  c1-udb2:
-    image: couchbase
+  cl1-udb2:
+    image: couchbase:latest
+    hostname: cl1-udb2.socialnetwork
+    container_name: cl1-udb2
+    working_dir: /opt/couchbase
+    stdin_open: true
+    tty: true
     networks:
-      - cluster_1
+      - internal
     ports:
-      - "8011-8014:8091-8094"
+      - "8011-8016:8091-8096"
       - "11210-11211:11210-11211"
-    volumes:
-      - c1-udb2_data:/opt/couchbase/var
 
-  c2-udb1:
-    image: couchbase
+  cl1-udb3:
+    image: couchbase:latest
+    hostname: cl1-udb3.socialnetwork
+    container_name: cl1-udb3
+    working_dir: /opt/couchbase
+    stdin_open: true
+    tty: true
     networks:
-      - cluster_2
+      - internal
     ports:
-      - "8101-8104:8091-8094"
+      - "8021-8026:8091-8096"
       - "11220-11221:11210-11211"
-    volumes:
-      - c2-udb1_data:/opt/couchbase/var
 
-  c2-udb2:
-    image: couchbase
+  cl2-udb1:
+    image: udb-couchbase-cluster:latest
+    pull_policy: never
+    env_file:
+      - docker.env
+    environment:
+      - CLUSTER_NAME=cl2-udb
+      - CLUSTER_NODES=cl2-udb2.socialnetwork,cl2-udb3.socialnetwork
+      - XDCR_CLUSTER=cl1-udb
+    hostname: cl2-udb1.socialnetwork
+    container_name: cl2-udb1
+    working_dir: /opt/couchbase
+    stdin_open: true
+    tty: true
     networks:
-      - cluster_2
+      - internal
     ports:
-      - "8111-8114:8091-8094"
-      - "11230-11231:11210-11211"
-    volumes:
-      - c2-udb2_data:/opt/couchbase/var
+      - "8101-8106:8091-8096"
+      - "11300-11301:11210-11211"
+    entrypoint: [ "" ]
+    command: sh -c "/opt/couchbase/init/init-cbserver.sh"
+
+  cl2-udb2:
+    image: couchbase:latest
+    hostname: cl2-udb2.socialnetwork
+    container_name: cl2-udb2
+    working_dir: /opt/couchbase
+    stdin_open: true
+    tty: true
+    networks:
+      - internal
+    ports:
+      - "8111-8116:8091-8096"
+      - "11310-11311:11210-11211"
+
+  cl2-udb3:
+    image: couchbase:latest
+    hostname: cl2-udb3.socialnetwork
+    container_name: cl2-udb3
+    working_dir: /opt/couchbase
+    stdin_open: true
+    tty: true
+    networks:
+      - internal
+    ports:
+      - "8121-8126:8091-8096"
+      - "11320-11321:11210-11211"
 
 networks:
-  cluster_1:
-    driver: bridge
-  cluster_2:
+  internal:
     driver: bridge
 
 volumes:
-  c1-udb1_data:
-  c1-udb2_data:
-  c2-udb1_data:
-  c2-udb2_data:
-
+  health_volume:
