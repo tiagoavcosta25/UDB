@@ -77,13 +77,13 @@ if ! [ -f "$FILE" ]; then
   # used to setup xdcr
   # https://docs.couchbase.com/server/current/cli/cbcli/couchbase-cli-xdcr-setup.html
 
-  if [ -n "$XDCR_CLUSTER" ]; then
+  if [ -n "$XDCR_CLUSTER_HOSTNAME" ]; then
     /opt/couchbase/bin/couchbase-cli xdcr-setup -c localhost \
     --username "$ADMINISTRATOR_USERNAME" \
     --password "$ADMINISTRATOR_PASSWORD" \
     --create \
-    --xdcr-cluster-name "$XDCR_CLUSTER" \
-    --xdcr-hostname "$XDCR_CLUSTER""1" \
+    --xdcr-cluster-name "$XDCR_CLUSTER_NAME" \
+    --xdcr-hostname "$XDCR_CLUSTER_HOSTNAME" \
     --xdcr-username "$ADMINISTRATOR_USERNAME" \
     --xdcr-password "$ADMINISTRATOR_PASSWORD"
   fi
@@ -92,12 +92,12 @@ if ! [ -f "$FILE" ]; then
 
   # used to xdcr replicate
   # https://docs.couchbase.com/server/current/cli/cbcli/couchbase-cli-xdcr-replicate.html
-  if [ -n "$XDCR_CLUSTER" ]; then
+  if [ -n "$XDCR_CLUSTER_HOSTNAME" ]; then
     couchbase-cli xdcr-replicate -c localhost \
     -u Administrator \
     -p password \
     --create \
-    --xdcr-cluster-name "$XDCR_CLUSTER" \
+    --xdcr-cluster-name "$XDCR_CLUSTER_NAME" \
     --xdcr-from-bucket "$BUCKET_NAME" \
     --xdcr-to-bucket "$BUCKET_NAME"
   fi

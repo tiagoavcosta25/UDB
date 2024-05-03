@@ -12,7 +12,8 @@ services:
     environment:
       - CLUSTER_NAME=cl1-udb
       - CLUSTER_NODES=cl1-udb2.socialnetwork,cl1-udb3.socialnetwork
-      - XDCR_CLUSTER=cl2-udb
+      - XDCR_CLUSTER_NAME=cl2-udb
+      - XDCR_CLUSTER_HOSTNAME=cl2-udb1.socialnetwork
     hostname: cl1-udb1.socialnetwork
     container_name: cl1-udb1
     working_dir: /opt/couchbase
@@ -23,6 +24,29 @@ services:
     ports:
       - "8001-8006:8091-8096"
       - "11200-11201:11210-11211"
+    entrypoint: [ "" ]
+    command: sh -c "/opt/couchbase/init/init-cbserver.sh"
+
+  cl2-udb1:
+    image: udb-couchbase-cluster:latest
+    pull_policy: never
+    env_file:
+      - docker.env
+    environment:
+      - CLUSTER_NAME=cl2-udb
+      - CLUSTER_NODES=cl2-udb2.socialnetwork,cl2-udb3.socialnetwork
+      - XDCR_CLUSTER_NAME=cl1-udb
+      - XDCR_CLUSTER_HOSTNAME=cl1-udb1.socialnetwork
+    hostname: cl2-udb1.socialnetwork
+    container_name: cl2-udb1
+    working_dir: /opt/couchbase
+    stdin_open: true
+    tty: true
+    networks:
+      - internal
+    ports:
+      - "8101-8106:8091-8096"
+      - "11300-11301:11210-11211"
     entrypoint: [ "" ]
     command: sh -c "/opt/couchbase/init/init-cbserver.sh"
 
@@ -51,28 +75,6 @@ services:
     ports:
       - "8021-8026:8091-8096"
       - "11220-11221:11210-11211"
-
-  cl2-udb1:
-    image: udb-couchbase-cluster:latest
-    pull_policy: never
-    env_file:
-      - docker.env
-    environment:
-      - CLUSTER_NAME=cl2-udb
-      - CLUSTER_NODES=cl2-udb2.socialnetwork,cl2-udb3.socialnetwork
-      - XDCR_CLUSTER=cl1-udb
-    hostname: cl2-udb1.socialnetwork
-    container_name: cl2-udb1
-    working_dir: /opt/couchbase
-    stdin_open: true
-    tty: true
-    networks:
-      - internal
-    ports:
-      - "8101-8106:8091-8096"
-      - "11300-11301:11210-11211"
-    entrypoint: [ "" ]
-    command: sh -c "/opt/couchbase/init/init-cbserver.sh"
 
   cl2-udb2:
     image: couchbase:latest
