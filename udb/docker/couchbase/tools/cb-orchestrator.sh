@@ -103,6 +103,8 @@ orchestrate() {
         touch $FILE
     fi
 
+    echo "Initialization complete" > /var/lib/appdata/init_done
+
     # Keep the container running
     tail -f /dev/null
 }

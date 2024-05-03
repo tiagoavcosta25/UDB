@@ -1,5 +1,7 @@
 FROM couchbase:latest AS stage_base
 
+LABEL maintainer="costat2"
+
 # Copy the scripts into the container
 COPY tools/cb-orchestrator.sh /opt/couchbase/init/
 COPY tools/check_availability.sh /opt/couchbase/init/
