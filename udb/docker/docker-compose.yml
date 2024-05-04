@@ -6,9 +6,7 @@ services:
       context: ../
       dockerfile: docker/be/Dockerfile
     hostname: udb.socialnetwork
-    container_name: be-api
-    depends_on:
-      - cl1-udb1
+    container_name: udb-api
     ports:
       - 5005:5005
       - 8080:8080
@@ -34,6 +32,7 @@ services:
       - CLUSTER_NODES=cl1-udb2.socialnetwork,cl1-udb3.socialnetwork
       - XDCR_CLUSTER_NAME=cl2-udb
       - XDCR_CLUSTER_HOSTNAME=cl2-udb1.socialnetwork
+      - MAIN=true
     hostname: cl1-udb1.socialnetwork
     container_name: cl1-udb1
     working_dir: /opt/couchbase
@@ -54,7 +53,7 @@ services:
       - 11200
       - 11201
     entrypoint: [ "" ]
-    command: sh -c "/opt/couchbase/init/cb-orchestrator.sh"
+    command: sh -c "/opt/couchbase/init/tools/cb-orchestrator.sh"
     volumes:
       - appdata-volume:/var/lib/appdata
 
@@ -78,8 +77,17 @@ services:
     ports:
       - "8101-8106:8091-8096"
       - "11300-11301:11210-11211"
+    expose:
+      - 8091
+      - 8092
+      - 8093
+      - 8094
+      - 8095
+      - 8096
+      - 11200
+      - 11201
     entrypoint: [ "" ]
-    command: sh -c "/opt/couchbase/init/cb-orchestrator.sh"
+    command: sh -c "/opt/couchbase/init/tools/cb-orchestrator.sh"
 
   cl1-udb2:
     image: couchbase:latest
@@ -93,6 +101,15 @@ services:
     ports:
       - "8011-8016:8091-8096"
       - "11210-11211:11210-11211"
+    expose:
+      - 8091
+      - 8092
+      - 8093
+      - 8094
+      - 8095
+      - 8096
+      - 11200
+      - 11201
 
   cl1-udb3:
     image: couchbase:latest
@@ -106,6 +123,15 @@ services:
     ports:
       - "8021-8026:8091-8096"
       - "11220-11221:11210-11211"
+    expose:
+      - 8091
+      - 8092
+      - 8093
+      - 8094
+      - 8095
+      - 8096
+      - 11200
+      - 11201
 
   cl2-udb2:
     image: couchbase:latest
@@ -119,6 +145,15 @@ services:
     ports:
       - "8111-8116:8091-8096"
       - "11310-11311:11210-11211"
+    expose:
+      - 8091
+      - 8092
+      - 8093
+      - 8094
+      - 8095
+      - 8096
+      - 11200
+      - 11201
 
   cl2-udb3:
     image: couchbase:latest
@@ -132,6 +167,15 @@ services:
     ports:
       - "8121-8126:8091-8096"
       - "11320-11321:11210-11211"
+    expose:
+      - 8091
+      - 8092
+      - 8093
+      - 8094
+      - 8095
+      - 8096
+      - 11200
+      - 11201
 
 networks:
   internal:

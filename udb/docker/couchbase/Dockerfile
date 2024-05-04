@@ -2,10 +2,9 @@ FROM couchbase:latest AS stage_base
 
 LABEL maintainer="costat2"
 
-# Copy the scripts into the container
-COPY tools/cb-orchestrator.sh /opt/couchbase/init/
-COPY tools/check_availability.sh /opt/couchbase/init/
+COPY config/ /opt/couchbase/init/config
+COPY tools/ /opt/couchbase/init/tools
 
-# Set execute permissions on the scripts
-RUN chmod +x /opt/couchbase/init/cb-orchestrator.sh
-RUN chmod +x /opt/couchbase/init/check_availability.sh
+RUN chmod +x /opt/couchbase/init/tools/*.sh
+
+RUN apt-get update && apt-get install -y jq && rm -rf /var/lib/apt/lists/*

@@ -6,9 +6,7 @@ services:
       context: ../
       dockerfile: docker/be/Dockerfile
     hostname: udb.socialnetwork
-    container_name: be-api
-    depends_on:
-      - cl1-udb1
+    container_name: udb-api
     ports:
       - 5005:5005
       - 8080:8080
@@ -51,7 +49,7 @@ services:
       - 11200
       - 11201
     entrypoint: [ "" ]
-    command: sh -c "/opt/couchbase/init/cb-orchestrator.sh"
+    command: sh -c "/opt/couchbase/init/tools/cb-orchestrator.sh"
     volumes:
       - appdata-volume:/var/lib/appdata
 
