@@ -23,5 +23,5 @@ import org.springframework.stereotype.Repository;
 @Repository("userRepository")
 @Collection("user")
 @ScanConsistency(query = QueryScanConsistency.REQUEST_PLUS)
-public interface UserRepository extends CouchbaseRepository<User, String>, DynamicProxyable<UserRepository> {
+public interface IUserRepository extends CouchbaseRepository<User, String>, DynamicProxyable<IUserRepository> {
 }
