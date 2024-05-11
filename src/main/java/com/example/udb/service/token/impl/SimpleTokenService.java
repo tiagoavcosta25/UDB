@@ -1,6 +1,7 @@
-package com.example.udb.service.token;
+package com.example.udb.service.token.impl;
 
 import com.couchbase.client.core.deps.io.netty.util.CharsetUtil;
+import com.example.udb.service.token.ITokenService;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;

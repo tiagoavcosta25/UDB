@@ -1,5 +1,6 @@
-package com.example.udb.service.token;
+package com.example.udb.service.token.impl;
 
+import com.example.udb.service.token.ITokenService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
