@@ -1,7 +1,0 @@
-{
-  "BUCKET": "social_network",
-  "BUCKET_RAM": 128,
-  "BUCKET_TYPE": "couchbase",
-  "SCOPE": "udb",
-  "COLLECTIONS": ["user", "session"]
-}
