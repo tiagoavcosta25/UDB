@@ -46,6 +46,12 @@
 			<artifactId>spring-security-core</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
 		<!-- Include Java EE API modules no longer in default Java 11 -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
