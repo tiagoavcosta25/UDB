@@ -14,4 +14,14 @@ RUN apk update && apk add --no-cache \
 
 ADD . /app
 
+COPY docker/be/libs/ /app/libs/
+
+RUN mvn install:install-file \
+    -Dfile=libs/framework-1.0-SNAPSHOT.jar \
+    -DgroupId=org.socialnetwork \
+    -DartifactId=framework \
+    -Dversion=1.0-SNAPSHOT \
+    -Dpackaging=jar \
+    -DgeneratePom=true
+
 RUN mvn clean install
