@@ -1,9 +1,11 @@
 package com.example.udb.service.token;
 
 import com.couchbase.client.core.deps.io.netty.util.CharsetUtil;
+import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 
+@Service("simpleTokenService")
 public class SimpleTokenService implements ITokenService {
 
     @Override

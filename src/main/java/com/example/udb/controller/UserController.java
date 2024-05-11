@@ -2,7 +2,6 @@ package com.example.udb.controller;
 
 import com.couchbase.client.core.msg.kv.DurabilityLevel;
 import com.couchbase.client.java.json.JsonObject;
-import com.example.udb.service.TokenService;
 import com.example.udb.service.UserService;
 import com.example.udb.util.Error;
 import com.example.udb.util.IValue;
@@ -22,17 +21,15 @@ import java.util.Map;
 @RequestMapping("/api/tenants")
 public class UserController {
     private final UserService userService;
-    private final TokenService tokenService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @Value("${storage.expiry:0}")
-    private int expiry;
+    private int durabilityLevel;
 
     @Autowired
-    public UserController(UserService userService, TokenService tokenService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.tokenService = tokenService;
     }
 
     @RequestMapping(value = "/{tenant}/user/login", method = RequestMethod.POST)
@@ -57,10 +54,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{tenant}/user/signup", method = RequestMethod.POST)
-    public ResponseEntity<? extends IValue> createLogin(@PathVariable("tenant") String tenant, @RequestBody String json) {
+    public ResponseEntity<? extends IValue> register(@PathVariable("tenant") String tenant, @RequestBody String json) {
         JsonObject jsonData = JsonObject.fromJson(json);
         try {
-            Result<Map<String, Object>> result = userService.createLogin(tenant, jsonData.getString("user"), jsonData.getString("password"), DurabilityLevel.values()[expiry]);
+            Result<Map<String, Object>> result = userService.register(tenant, jsonData.getString("user"), jsonData.getString("password"), DurabilityLevel.values()[durabilityLevel]);
             return ResponseEntity.status(HttpStatus.CREATED).body(result);
         } catch (AuthenticationServiceException e) {
             e.printStackTrace();

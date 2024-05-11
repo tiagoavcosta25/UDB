@@ -4,10 +4,12 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.Date;
 
+@Service("jwtTokenService")
 public class JwtTokenService implements ITokenService {
     @Value("${jwt.secret}")
     private String secret;
