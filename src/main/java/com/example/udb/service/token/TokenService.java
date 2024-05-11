@@ -1,22 +1,30 @@
-package com.example.udb.service;
+package com.example.udb.service.token;
 
 import com.couchbase.client.core.deps.io.netty.util.CharsetUtil;
-import com.couchbase.client.java.json.JsonObject;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.Base64;
+import java.util.Date;
 
+@Deprecated
 @Service
 public class TokenService {
     @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.enabled}")
+    @Value("${jwt.enabled:true}")
     private boolean useJwt;
+
+    @Value("${jwt.algorithm:HS256}")
+    private SignatureAlgorithm algorithm;
+
+    @Value("${jwt.tokenExpiry}:3600")
+    private Integer tokenExpiry;
 
     /**
      * @throws IllegalStateException when the Authorization header couldn't be verified or didn't match the
@@ -65,13 +73,15 @@ public class TokenService {
     }
 
     public String buildJwtToken(String username) {
-        String token = Jwts.builder().signWith(SignatureAlgorithm.HS512, secret)
-                .setPayload(JsonObject.create()
-                        .put("user", username)
-                        .toString())
-                .compact();
+        Duration tokenExpiryDuration = Duration.ofMinutes(tokenExpiry);
+        Date tokenExpiry = new Date(System.currentTimeMillis() + tokenExpiryDuration.toMillis());
 
-        return token;
+        return Jwts.builder()
+                .signWith(algorithm, secret)
+                .setClaims(Jwts.claims().setSubject(username))
+                .setIssuedAt(new Date())
+                .setExpiration(tokenExpiry)
+                .compact();
     }
 
     private String buildSimpleToken(String username) {
