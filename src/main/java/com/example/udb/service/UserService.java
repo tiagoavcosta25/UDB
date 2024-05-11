@@ -25,9 +25,8 @@ public class UserService {
     private final ITokenService jwtService;
     private final IUserRepository IUserRepository;
 
-    // TODO: Create context that allows dynamic usage of different token services
     @Autowired
-    public UserService(@Qualifier("jwtTokenService") ITokenService tokenService, IUserRepository IUserRepository) {
+    public UserService(ITokenService tokenService, IUserRepository IUserRepository) {
         this.jwtService = tokenService;
         this.IUserRepository = IUserRepository;
     }
