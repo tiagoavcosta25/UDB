@@ -2,12 +2,12 @@
 
 # User Database
 
-## Start Full Couchbase Server and UDB API
+## Build and Start Full Couchbase Server and UDB API
 ```bash
-make start
+make build-and-start
 ```
 
-## Start Lite Couchbase Server and UDB API
+## Build and Start Lite Couchbase Server and UDB API
 ```bash
-make start-light
+make build-and-start-light
 ```
