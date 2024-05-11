@@ -29,6 +29,7 @@ services:
       - couchbase/cb.env
     environment:
       - CLUSTER_NAME=cl1-udb
+      - MAIN=true
     hostname: cl1-udb1.socialnetwork
     container_name: cl1-udb1
     working_dir: /opt/couchbase
