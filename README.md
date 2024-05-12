@@ -34,3 +34,9 @@ For development or testing environments, a lighter version of the Couchbase serv
 ```bash
 make build-and-start-light
 ```
+
+### Useful commands
+Check if dependencies are ok
+```bash
+mvn dependency:analyze
+```

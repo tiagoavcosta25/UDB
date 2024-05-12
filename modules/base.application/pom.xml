@@ -56,23 +56,18 @@
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.socialnetwork</groupId>
             <artifactId>framework</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.socialnetwork</groupId>
-            <artifactId>base.core</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
+        <!-- Modules -->
         <dependency>
             <groupId>org.socialnetwork</groupId>
             <artifactId>base.service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.socialnetwork</groupId>
             <artifactId>base.common</artifactId>
