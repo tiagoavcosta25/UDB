@@ -15,7 +15,8 @@ services:
     networks:
       - internal
     entrypoint: ["wait-for.sh", "/var/lib/appdata/init_done", "--"]
-    command: ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "target/udb.jar"]
+    # TODO: FIX THIS, SHOULD POINT TO ROOT NOT TO MODULE
+    command: ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "modules/base.application/target/base.application.jar"]
     volumes:
       - appdata-volume:/var/lib/appdata
       - ../:/app
