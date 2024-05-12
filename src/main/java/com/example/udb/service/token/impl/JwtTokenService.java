@@ -18,7 +18,7 @@ public class JwtTokenService implements ITokenService {
     @Value("${jwt.algorithm:HS256}")
     private SignatureAlgorithm algorithm;
 
-    @Value("${jwt.tokenExpiry}:3600")
+    @Value("${jwt.tokenExpiry:3600}")
     private Integer tokenExpiry;
 
     @Override

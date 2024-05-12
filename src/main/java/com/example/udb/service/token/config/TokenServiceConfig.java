@@ -14,8 +14,7 @@ public class TokenServiceConfig {
     private final String tokenServiceBean;
 
     @Autowired
-    public TokenServiceConfig(ApplicationContext context,
-                              @Value("${token.service.bean}") String tokenServiceBean) {
+    public TokenServiceConfig(ApplicationContext context, @Value("${token.service.bean}") String tokenServiceBean) {
         this.context = context;
         this.tokenServiceBean = tokenServiceBean;
     }
