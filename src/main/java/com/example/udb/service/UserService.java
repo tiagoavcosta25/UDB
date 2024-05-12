@@ -9,7 +9,6 @@ import com.example.udb.repository.IUserRepository;
 import com.example.udb.service.token.ITokenService;
 import com.example.udb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationServiceException;
