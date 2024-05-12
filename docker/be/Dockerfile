@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine AS stage_base
+FROM openjdk:17-alpine
 
 LABEL maintainer="costat2"
 
@@ -11,17 +11,3 @@ RUN apk update && apk add --no-cache \
     maven \
     jq \
     curl
-
-ADD . /app
-
-COPY docker/be/libs/ /app/libs/
-
-RUN mvn install:install-file \
-    -Dfile=libs/framework-1.0-SNAPSHOT.jar \
-    -DgroupId=org.socialnetwork \
-    -DartifactId=framework \
-    -Dversion=1.0-SNAPSHOT \
-    -Dpackaging=jar \
-    -DgeneratePom=true
-
-RUN mvn clean install

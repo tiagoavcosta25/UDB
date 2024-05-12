@@ -18,6 +18,8 @@ services:
     command: ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "target/udb.jar"]
     volumes:
       - appdata-volume:/var/lib/appdata
+      - ../:/app
+      - maven-repo:/root/.m2
 
   cl1-udb1:
     build:
@@ -60,3 +62,4 @@ networks:
 
 volumes:
   appdata-volume:
+  maven-repo:
