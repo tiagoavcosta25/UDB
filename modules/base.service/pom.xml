@@ -62,6 +62,11 @@
             <artifactId>base.core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+        <groupId>org.socialnetwork</groupId>
+        <artifactId>base.persistence</artifactId>
+        <version>${project.parent.version}</version>
+    </dependency>
     </dependencies>
 
 </project>

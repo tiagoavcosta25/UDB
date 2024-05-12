@@ -21,6 +21,7 @@
 		<module>modules/base.service</module>
 		<module>modules/base.application</module>
 		<module>modules/base.common</module>
+		<module>modules/base.persistence</module>
 	</modules>
 
 	<properties>

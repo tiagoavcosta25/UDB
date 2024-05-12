@@ -5,9 +5,8 @@ import com.couchbase.client.core.msg.kv.DurabilityLevel;
 import com.couchbase.client.java.json.JsonObject;
 import com.couchbase.client.java.kv.UpsertOptions;
 import org.framework.util.Result;
-import org.socialnetwork.token.ITokenService;
+import org.socialnetwork.token.TokenService;
 import org.socialnetwork.user.model.User;
-import org.socialnetwork.user.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
@@ -21,11 +20,11 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    private final ITokenService jwtService;
-    private final IUserRepository userRepository;
+    private final TokenService jwtService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserService(ITokenService tokenService, IUserRepository userRepository) {
+    public UserService(TokenService tokenService, UserRepository userRepository) {
         this.jwtService = tokenService;
         this.userRepository = userRepository;
     }
@@ -35,7 +34,7 @@ public class UserService {
             throw new AuthenticationServiceException("Invalid username or password");
         }
 
-        IUserRepository IUserRepository = this.userRepository.withScope(tenant);
+        UserRepository userRepository = this.userRepository.withScope(tenant);
         UpsertOptions options = UpsertOptions.upsertOptions();
         options.durability(durabilityLevel);
 
@@ -45,7 +44,7 @@ public class UserService {
         String queryType = String.format("KV insert - scoped to %s.users: document %s", tenant, username);
 
         try {
-            IUserRepository.withOptions(options).save(user);
+            userRepository.withOptions(options).save(user);
             Map<String, Object> data = JsonObject.create().put("token", jwtService.buildToken(username)).toMap();
 
             return Result.of(data, queryType);
@@ -57,11 +56,11 @@ public class UserService {
     }
 
     public Result<Map<String, Object>> login(final String tenant, final String username, final String password) {
-        IUserRepository IUserRepository = this.userRepository.withScope(tenant);
+        UserRepository userRepository = this.userRepository.withScope(tenant);
         String queryType = String.format("KV get - scoped to %s.users: for password field in document %s", tenant, username);
         Optional<User> userHolder;
         try {
-            userHolder = IUserRepository.findById(username);
+            userHolder = userRepository.findById(username);
         } catch (DocumentNotFoundException e) {
             throw new AuthenticationCredentialsNotFoundException("Bad Username or Password");
         }

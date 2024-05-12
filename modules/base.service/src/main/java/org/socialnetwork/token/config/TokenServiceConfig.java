@@ -1,6 +1,6 @@
 package org.socialnetwork.token.config;
 
-import org.socialnetwork.token.ITokenService;
+import org.socialnetwork.token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -21,7 +21,7 @@ public class TokenServiceConfig {
 
     @Bean
     @Primary
-    public ITokenService tokenService() {
-        return (ITokenService) context.getBean(tokenServiceBean);
+    public TokenService tokenService() {
+        return (TokenService) context.getBean(tokenServiceBean);
     }
 }

@@ -3,7 +3,7 @@ package org.socialnetwork.token.impl;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.socialnetwork.token.ITokenService;
+import org.socialnetwork.token.TokenService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.Date;
 
 @Service("jwtTokenService")
-public class JwtTokenService implements ITokenService {
+public class JwtTokenServiceImpl implements TokenService {
     @Value("${jwt.secret}")
     private String secret;
 

@@ -10,7 +10,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>base.core</artifactId>
+    <artifactId>base.persistence</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -36,8 +36,13 @@
             <artifactId>javax.inject</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.socialnetwork</groupId>
-            <artifactId>framework</artifactId>
+            <artifactId>base.core</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 

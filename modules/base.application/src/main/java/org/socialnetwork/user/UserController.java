@@ -1,4 +1,4 @@
-package org.socialnetwork.user.controller;
+package org.socialnetwork.user;
 
 import com.couchbase.client.core.msg.kv.DurabilityLevel;
 import com.couchbase.client.java.json.JsonObject;
@@ -7,7 +7,6 @@ import org.framework.util.IValue;
 import org.framework.util.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.socialnetwork.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

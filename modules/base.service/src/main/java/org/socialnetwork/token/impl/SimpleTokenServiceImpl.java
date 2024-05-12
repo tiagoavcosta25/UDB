@@ -1,13 +1,13 @@
 package org.socialnetwork.token.impl;
 
 import com.couchbase.client.core.deps.io.netty.util.CharsetUtil;
-import org.socialnetwork.token.ITokenService;
+import org.socialnetwork.token.TokenService;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 
 @Service("simpleTokenService")
-public class SimpleTokenService implements ITokenService {
+public class SimpleTokenServiceImpl implements TokenService {
 
     @Override
     public String buildToken(String username) {

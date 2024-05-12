@@ -1,4 +1,4 @@
-package org.socialnetwork.user.repository;
+package org.socialnetwork.user;
 
 import com.couchbase.client.java.query.QueryScanConsistency;
 import org.socialnetwork.user.model.User;
@@ -8,8 +8,6 @@ import org.springframework.data.couchbase.repository.DynamicProxyable;
 import org.springframework.data.couchbase.repository.ScanConsistency;
 import org.springframework.stereotype.Repository;
 
-// QueryScanConsistency.REQUEST_PLUS ensures that the query waits for the most recent changes to be fully indexed,
-// thus providing a more accurate and up-to-date view of the data at the cost of additional wait time and processing.
 /**
  * QueryScanConsistency.REQUEST_PLUS ensures that the query waits for the most recent changes to be fully indexed,
  * thus providing a more accurate and up-to-date view of the data at the cost of additional wait time and processing.
@@ -23,5 +21,5 @@ import org.springframework.stereotype.Repository;
 @Repository("userRepository")
 @Collection("user")
 @ScanConsistency(query = QueryScanConsistency.REQUEST_PLUS)
-public interface IUserRepository extends CouchbaseRepository<User, String>, DynamicProxyable<IUserRepository> {
+public interface UserRepository extends CouchbaseRepository<User, String>, DynamicProxyable<UserRepository> {
 }
