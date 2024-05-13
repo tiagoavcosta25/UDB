@@ -1,7 +1,6 @@
 package org.socialnetwork.user;
 
 import com.couchbase.client.java.query.QueryScanConsistency;
-import org.socialnetwork.user.model.User;
 import org.springframework.data.couchbase.repository.Collection;
 import org.springframework.data.couchbase.repository.CouchbaseRepository;
 import org.springframework.data.couchbase.repository.DynamicProxyable;

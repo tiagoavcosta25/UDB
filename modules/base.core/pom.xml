@@ -19,6 +19,7 @@
     </properties>
 
     <dependencies>
+        <!-- Spring Data -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
@@ -27,9 +28,12 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-couchbase</artifactId>
         </dependency>
+        <!-- Spring Data -->
+
+        <!-- Other Utilities and Frameworks -->
         <dependency>
-            <groupId>com.couchbase.client</groupId>
-            <artifactId>java-client</artifactId>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-core</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
@@ -39,6 +43,7 @@
             <groupId>org.socialnetwork</groupId>
             <artifactId>framework</artifactId>
         </dependency>
+        <!-- Other Utilities and Frameworks -->
     </dependencies>
 
 </project>

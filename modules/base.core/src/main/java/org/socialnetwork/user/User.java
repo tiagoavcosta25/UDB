@@ -1,4 +1,4 @@
-package org.socialnetwork.user.model;
+package org.socialnetwork.user;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;

@@ -6,7 +6,6 @@ import com.couchbase.client.java.json.JsonObject;
 import com.couchbase.client.java.kv.UpsertOptions;
 import org.framework.util.Result;
 import org.socialnetwork.token.TokenService;
-import org.socialnetwork.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;

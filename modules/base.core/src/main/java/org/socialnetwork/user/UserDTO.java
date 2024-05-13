@@ -1,4 +1,4 @@
-package org.socialnetwork.user.dto;
+package org.socialnetwork.user;
 
 import org.framework.annotations.DTO;
 
