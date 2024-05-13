@@ -40,6 +40,10 @@
         </dependency>
         <!-- Database and JSON Processing -->
 
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
         <!-- Modules -->
         <dependency>
             <groupId>org.socialnetwork</groupId>

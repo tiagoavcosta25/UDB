@@ -4,7 +4,7 @@ import com.couchbase.client.core.error.DocumentNotFoundException;
 import com.couchbase.client.core.msg.kv.DurabilityLevel;
 import com.couchbase.client.java.json.JsonObject;
 import com.couchbase.client.java.kv.UpsertOptions;
-import org.framework.util.Result;
+import org.socialnetwork.definitions.Result;
 import org.socialnetwork.token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

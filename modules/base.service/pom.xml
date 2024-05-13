@@ -65,11 +65,25 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
         </dependency>
+        <!-- Other Utilities and Frameworks -->
+
+        <!-- Social Network Framework Modules -->
         <dependency>
             <groupId>org.socialnetwork</groupId>
-            <artifactId>framework</artifactId>
+            <artifactId>framework.core</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
-        <!-- Other Utilities and Frameworks -->
+        <dependency>
+            <groupId>org.socialnetwork</groupId>
+            <artifactId>framework.utility</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.socialnetwork</groupId>
+            <artifactId>framework.validator</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- Social Network Framework Modules -->
 
         <!-- Modules -->
         <dependency>
