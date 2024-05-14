@@ -4,6 +4,7 @@ import com.couchbase.client.core.msg.kv.DurabilityLevel;
 import com.couchbase.client.java.json.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.socialnetwork.annotations.Validate;
 import org.socialnetwork.definitions.Error;
 import org.socialnetwork.definitions.IValue;
 import org.socialnetwork.definitions.Result;
@@ -32,12 +33,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{tenant}/user/login", method = RequestMethod.POST)
-    public ResponseEntity<? extends IValue> login(@PathVariable("tenant") String tenant, @RequestBody Map<String, String> loginInfo) {
-        String user = loginInfo.get("user");
-        String password = loginInfo.get("password");
-        if (user == null || password == null) {
-            return ResponseEntity.badRequest().body(new Error("User or password missing, or malformed request"));
-        }
+    public ResponseEntity<? extends IValue> login(@PathVariable("tenant") String tenant, @Validate @RequestBody UserDTO userDTO) {
+        String user = userDTO.username();
+        String password = userDTO.password();
 
         try {
             return ResponseEntity.ok(userService.login(tenant, user, password));
