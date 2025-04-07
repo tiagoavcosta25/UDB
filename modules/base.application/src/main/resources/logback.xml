@@ -43,13 +43,6 @@
         </encoder>
     </appender>
 
-    <!-- Logger for all classes starting with com.couchbase -->
-    <logger name="com.couchbase" level="INFO" additivity="false">
-        <appender-ref ref="COUCHBASE_FILE" />
-        <appender-ref ref="CONSOLE" />
-    </logger>
-
-
     <!-- Logger for user-related classes -->
     <logger name="org.socialnetwork.user" level="INFO" additivity="false">
         <appender-ref ref="USER_FILE" />
