@@ -53,3 +53,5 @@ build-and-start: build start
 build-and-start-light: build-light start-light
 
 build-and-start-udb: build-udb start-udb
+
+build-and-start-couchbase: build-couchbase start-couchbase

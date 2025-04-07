@@ -40,6 +40,11 @@ make build-and-start-light
 make build-and-start-udb
 ```
 
+### Build Couchbase
+```bash
+make build-and-start-couchbase
+```
+
 ### Useful commands
 Check if dependencies are ok
 ```bash
