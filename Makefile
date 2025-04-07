@@ -1,4 +1,4 @@
-.PHONY: all help do-build build build-light do-start start start-light build-and-start build-and-start-light
+.PHONY: all help do-build build build-light do-start start start-light build-and-start build-and-start-light rebuild-backend
 
 DC_FULL_FILE = docker-compose.yml
 DC_LITE_FILE = docker-compose-lite.yml
@@ -30,12 +30,20 @@ build:
 build-light:
 	$(MAKE) do-build DC_FILE=$(DC_LITE_FILE)
 
+build-udb:
+	@cd docker && docker-compose -f $(DC_FULL_FILE) build udb
+
 start:
 	$(MAKE) do-start DC_FILE=$(DC_FULL_FILE)
 
 start-light:
 	$(MAKE) do-start DC_FILE=$(DC_LITE_FILE)
 
+start-udb:
+	@cd docker && docker-compose -f $(DC_LITE_FILE) up -d udb
+
 build-and-start: build start
 
 build-and-start-light: build-light start-light
+
+build-and-start-udb: build-udb start-udb

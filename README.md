@@ -30,9 +30,14 @@ make build-and-start
 ```
 
 ### Lite Setup
-For development or testing environments, a lighter version of the Couchbase server can be utilized to conserve resources:
+For development or testing environments, a lighter version of the Couchbase server can be used to conserve resources:
 ```bash
 make build-and-start-light
+```
+
+### Build UDB
+```bash
+make build-and-start-udb
 ```
 
 ### Useful commands
