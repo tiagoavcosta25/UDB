@@ -7,7 +7,7 @@ import com.couchbase.client.java.kv.UpsertOptions;
 import org.socialnetwork.definitions.Result;
 import org.socialnetwork.model.user.User;
 import org.socialnetwork.service.token.TokenService;
-import org.socialnetwork.user.UserRepository;
+import org.socialnetwork.persistence.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;

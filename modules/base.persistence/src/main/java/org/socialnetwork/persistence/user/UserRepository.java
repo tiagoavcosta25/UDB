@@ -1,4 +1,4 @@
-package org.socialnetwork.user;
+package org.socialnetwork.persistence.user;
 
 import com.couchbase.client.java.query.QueryScanConsistency;
 import org.socialnetwork.model.user.User;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * QueryScanConsistency.REQUEST_PLUS ensures that the query waits for the most recent changes to be fully indexed,
- * thus providing a more accurate and up-to-date view of the data at the cost of additional wait time and processing.
+ * thus providing a more accurate and up to date view of the data at the cost of additional wait time and processing.
  * <p>
  * User repository
  * The DynamicProxyable interface exposes userRepository.withScope(scope), withCollection() and withOptions() It's
