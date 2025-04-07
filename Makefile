@@ -33,6 +33,9 @@ build-light:
 build-udb:
 	@cd docker && docker-compose -f $(DC_FULL_FILE) build udb
 
+build-couchbase:
+	@cd docker && docker-compose -f $(DC_LITE_FILE) build cl1-udb1
+
 start:
 	$(MAKE) do-start DC_FILE=$(DC_FULL_FILE)
 
@@ -41,6 +44,9 @@ start-light:
 
 start-udb:
 	@cd docker && docker-compose -f $(DC_LITE_FILE) up -d udb
+
+start-couchbase:
+	@cd docker && docker-compose -f $(DC_LITE_FILE) up -d cl1-udb1
 
 build-and-start: build start
 
