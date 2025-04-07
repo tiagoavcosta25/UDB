@@ -1,9 +1,9 @@
-package org.socialnetwork.token.impl;
+package org.socialnetwork.service.token.impl;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.socialnetwork.token.TokenService;
+import org.socialnetwork.service.token.TokenService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package org.socialnetwork.user;
+package org.socialnetwork.model.user;
 
 import org.socialnetwork.annotations.DTO;
 import org.socialnetwork.annotations.NotBlank;

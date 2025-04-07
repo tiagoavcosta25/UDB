@@ -1,4 +1,4 @@
-package org.socialnetwork.token;
+package org.socialnetwork.service.token;
 
 public interface TokenService {
     String buildToken(String username);

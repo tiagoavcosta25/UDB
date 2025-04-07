@@ -1,4 +1,4 @@
-package org.socialnetwork.user;
+package org.socialnetwork.service.user;
 
 import com.couchbase.client.core.msg.kv.DurabilityLevel;
 import com.couchbase.client.java.json.JsonObject;
@@ -8,6 +8,7 @@ import org.socialnetwork.annotations.Validate;
 import org.socialnetwork.definitions.Error;
 import org.socialnetwork.definitions.IValue;
 import org.socialnetwork.definitions.Result;
+import org.socialnetwork.model.user.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

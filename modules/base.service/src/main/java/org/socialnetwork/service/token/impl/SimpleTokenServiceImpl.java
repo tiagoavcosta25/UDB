@@ -1,7 +1,7 @@
-package org.socialnetwork.token.impl;
+package org.socialnetwork.service.token.impl;
 
 import com.couchbase.client.core.deps.io.netty.util.CharsetUtil;
-import org.socialnetwork.token.TokenService;
+import org.socialnetwork.service.token.TokenService;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;

@@ -1,6 +1,6 @@
-package org.socialnetwork.token.config;
+package org.socialnetwork.service.token.config;
 
-import org.socialnetwork.token.TokenService;
+import org.socialnetwork.service.token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
