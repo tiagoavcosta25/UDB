@@ -43,6 +43,18 @@
         </encoder>
     </appender>
 
+    <!-- File Appender for Couchbase logs -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n%ex{short}</pattern>
+        </encoder>
+    </appender>
+
     <!-- Logger for user-related classes -->
     <logger name="org.socialnetwork.user" level="INFO" additivity="false">
         <appender-ref ref="USER_FILE" />
@@ -64,6 +76,11 @@
     <!-- Root logger configuration -->
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
+    </root>
+
+    <root level="ERROR">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ERROR_FILE" />
     </root>
 
 </configuration>
